@@ -12,20 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('bebas-masalah', function (Blueprint $table) {   // This table could be merged with mahasiswa
-            $table->id();
-            $table->boolean('status_sb');
-            // anotha condition like ukt, perpus etc
-            // **
-            $table->enum('ukt', ['Lunas', 'Belum Dibayar', 'Cicil']);
-
-            // change column name later
-            $table->string('dok_1')->nullable;
-            $table->string('dok_2')->nullable;
-            $table->string('dok_3')->nullable;
-            $table->string('dok_4')->nullable;
-            $table->string('dok_5')->nullable;
-            $table->string('dok_6')->nullable;
-            $table->foreignId('mahasiswa_id');
+            $table->increments('id');
+            // $table->boolean('status_sb');
+            // $table->enum('ukt', ['Lunas', 'Belum Dibayar', 'Cicil']);
+            $table->string('lembar_persetujuan')->nullable;
+            $table->string('lembar_pengesahan')->nullable;
+            $table->string('lembar_konsultasi_dospem1')->nullable;
+            $table->string('lembar_konsultasi_dospem2')->nullable;  //tahun lulus
+            $table->string('lembar_revisi')->nullable;
+            $table->unsignedInteger('mahasiswa_id');
             $table->timestamps();
         });
     }

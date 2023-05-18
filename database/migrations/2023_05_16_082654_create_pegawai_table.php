@@ -1,5 +1,6 @@
 <?php
 
+use Egulias\EmailValidator\Warning\TLD;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,13 +12,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('staff', function (Blueprint $table) {   // This table can actually be merged with dosen table, wdyt?
-                                                                // The three (and four) tables can actually also be merged.
-            $table->id();
-            // $table->string('username')->unique();    // activate this if users table isn't needed.
-            // $table->string('password');              // activate this if users table isn't needed.
-            $table->string('nama');
-            $table->set('akses', ['Admin', 'TA', 'Keuangan', 'Perspustakaan'])->nullable;
+        Schema::create('pegawai', function (Blueprint $table) {
+            $table->increments('id_pegawai');
+            $table->char('nama');
+            $table->enum('status', ['Dosen', 'Staff']);
+            // $table->enum('level', ['Admin', 'TA', 'Keuangan', 'Perspustakaan'])->nullable;
+            $table->char('nik', 16)->unique();
+            $table->string('nip')->unique()->nullable();
+            $table->string('nidn')->unique()->nullable();
             $table->string('email')->unique();  // this can be removed if condition applies (acces emails from users' table)
                                                 // removing this can minimize redudancy, inconsistency and space
                                                 // removing this may slightly increase server load (need to access users table for emails)
@@ -27,7 +29,8 @@ return new class extends Migration
             $table->date('tanggal_lahir');
             $table->enum('agama', ['Buddha', 'Hindu', 'Islam', 'Katolik', 'Konghucu', 'Kristen']);
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
-            $table->foreignId('user_id');       // activate this is users table is needed
+            $table->unsignedInteger('fk_prodi')->constrained('prodi');
+            $table->unsignedInteger('fk_users')->constrained('users');       // activate this is users table is needed
             $table->rememberToken();
             $table->timestamps();
         });
@@ -38,6 +41,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('staff');
+        Schema::dropIfExists('pegawai');
     }
 };

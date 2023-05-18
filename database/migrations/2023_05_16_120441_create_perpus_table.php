@@ -12,7 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('perpus', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id_perpus');
+            $table->string('judul_buku');
+            $table->date('peminjaman');
+            $table->date('pengembalian');
+            $table->integer('denda');
+            $table->boolean('status')->default(0);
+            $table->unsignedInteger('fk_mahasiswa')->constrained('mahasiswa');
             $table->timestamps();
         });
     }

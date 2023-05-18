@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('jurusan', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama');
-            $table->string('kode');
-            $table->year('tahun_lahir')->nullable();
-            $table->foreignId('dosen_id');
+            $table->increments('id_jurusan');
+            $table->char('nama_jurusan');
+            $table->string('kode_jurusan');
+            $table->year('tahun_jurusan')->nullable();
+            $table->unsignedInteger('fk_kajur')->constrained('pegawai');
             $table->timestamps();
         });
     }

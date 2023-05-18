@@ -12,14 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('program-studi', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama');
-            $table->string('kode');
-            $table->string('jenjang');
-            $table->integer('tingkat_jenjang');
-            $table->year('tahun_lahir')->nullable();
-            $table->foreignId('jurusan_id');
-            $table->foreignId('dosen_id');
+            $table->increments('id_prodi');
+            $table->char('nama_prodi');
+            $table->string('kode_prodi');
+            $table->enum('jenjang_prodi', ['Sarjana', 'Diploma']);
+            $table->integer('tingkat_jenjang_prodi', ['1', '2', '3', '4']);
+            $table->year('tahun_prodi')->nullable();
+            $table->unsignedInteger('fk_jurusan')->constrained('jurusan');
+            $table->unsignedInteger('fk_kaprodi')->constrained('pegawai');
             $table->timestamps();
         });
     }
