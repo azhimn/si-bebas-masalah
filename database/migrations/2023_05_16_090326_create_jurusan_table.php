@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('jurusan', function (Blueprint $table) {
             $table->increments('id_jurusan');
-            $table->char('nama_jurusan');
-            $table->string('kode_jurusan');
-            $table->year('tahun_jurusan')->nullable();
+            $table->char('nama');
+            $table->string('kode');
             $table->unsignedInteger('fk_kajur')->constrained('pegawai');
             $table->timestamps();
         });

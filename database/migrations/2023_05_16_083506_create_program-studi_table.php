@@ -13,11 +13,10 @@ return new class extends Migration
     {
         Schema::create('program-studi', function (Blueprint $table) {
             $table->increments('id_prodi');
-            $table->char('nama_prodi');
-            $table->string('kode_prodi');
-            $table->enum('jenjang_prodi', ['Sarjana', 'Diploma']);
-            $table->integer('tingkat_jenjang_prodi', ['1', '2', '3', '4']);
-            $table->year('tahun_prodi')->nullable();
+            $table->char('nama');
+            $table->string('kode');
+            $table->enum('jenjang', ['Sarjana', 'Diploma']);
+            $table->integer('tingkat_jenjang', ['1', '2', '3', '4']);
             $table->unsignedInteger('fk_jurusan')->constrained('jurusan');
             $table->unsignedInteger('fk_kaprodi')->constrained('pegawai');
             $table->timestamps();

@@ -11,21 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('username');             // username mahasiswa == NIM, pegawai == NIK
-                                                    // if we store same value in both of the respective tables, wouldn't it be redundant?
-                                                    // we should choose either security or storage efficiency.
-                                                    // we could use fk, but dunno abt the speed.
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->enum('level', ['Mahasiswa', 'Admin', 'TA', 'Keuangan', 'Perspustakaan']);
-            //one of the following FKs must be filled, don't fill more than one.
-            $table->unsignedInteger('fk_mahasiswa')->constrained('mahasiswa')->nullable();
-            $table->unsignedInteger('fk_pegawai')->constrained('pegawai')->nullable();
-            $table->rememberToken();
-            $table->timestamps();
-        });
+        // Schema::create('users', function (Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->string('username');             // username mahasiswa == NIM, pegawai == NIK
+        //                                             // if we store same value in both of the respective tables, wouldn't it be redundant?
+        //                                             // we should choose either security or storage efficiency.
+        //                                             // we could use fk, but dunno abt the speed.
+        //     $table->string('email')->unique();
+        //     $table->string('password');
+        //     $table->tinyInteger('role')->default(0);    // 0 = Mahasiswa, 1 = Kajur, 2 = Prodi, 3 =  TA, 4 = Keuangan, 5 = Perpus
+        //     //one of the following FKs must be filled, don't fill more than one.
+        //     $table->unsignedInteger('fk_mahasiswa')->constrained('mahasiswa')->nullable();
+        //     $table->unsignedInteger('fk_pegawai')->constrained('pegawai')->nullable();
+        //     $table->rememberToken();
+        //     $table->timestamps();
+        // });
     }
 
     /**
