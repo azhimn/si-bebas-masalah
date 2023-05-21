@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('jurusan', function (Blueprint $table) {
             $table->increments('id_jurusan');
-            $table->char('nama');
-            $table->string('kode');
-            $table->unsignedInteger('fk_kajur')->constrained('pegawai');
+            $table->char('nama', 50);
+            $table->char('kode', 1);
+            $table->unsignedInteger('fk_kajur')->nullable();
+            // $table->foreign('fk_kajur')->references('id_pegawai')->on('pegawai')->onDelete('cascade');
             $table->timestamps();
         });
     }
