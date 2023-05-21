@@ -30,7 +30,7 @@ return new class extends Migration
             $table->date('tanggal_lahir');
             $table->enum('agama', ['Buddha', 'Hindu', 'Islam', 'Katolik', 'Konghucu', 'Kristen']);
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
-            $table->unsignedInteger('fk_prodi');
+            $table->unsignedInteger('fk_prodi')->nullable();
             // $table->foreign('fk_prodi')->references('id_prodi')->on('program_studi')->onDelete('cascade')->nullable();
             $table->rememberToken();
             $table->timestamps();
