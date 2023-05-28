@@ -17,8 +17,8 @@ return new class extends Migration
             $table->char('nama', 50);
             $table->boolean('dosen');                   // 0 = staff, 1 = dosen
             $table->char('nik', 16)->unique();          // username
-            $table->string('password');
-            $table->tinyInteger('role')->default(1);    // 0 = Mahasiswa, 1 = Kajur, 2 = Prodi, 3 =  TA, 4 = Keuangan, 5 = Perpus
+            // $table->string('password');
+            // $table->tinyInteger('role')->default(1);    // 0 = Mahasiswa, 1 = Kajur, 2 = Prodi, 3 =  TA, 4 = Keuangan, 5 = Perpus
             $table->char('nip', 18)->unique()->nullable();
             $table->char('nidn', 10)->unique()->nullable();
             $table->string('email', 30)->unique();  // this can be removed if condition applies (acces emails from users' table)
@@ -29,9 +29,9 @@ return new class extends Migration
             $table->string('alamat', 50);
             $table->date('tanggal_lahir');
             $table->enum('agama', ['Buddha', 'Hindu', 'Islam', 'Katolik', 'Konghucu', 'Kristen']);
-            $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
+            $table->boolean('jenis_kelamin');   //0 = Laki-laki, 1 = Perempuan
             $table->unsignedInteger('fk_prodi')->nullable();
-            // $table->foreign('fk_prodi')->references('id_prodi')->on('program_studi')->onDelete('cascade')->nullable();
+            $table->unsignedInteger('fk_user');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -17,13 +17,13 @@ return new class extends Migration
 
             // perpus
             $table->boolean('status_perpus');
-            $table->string('catatan_perpus');
-            $table->dateTimeTz('tanggal_update_perpus');
+            $table->string('note_perpus');
+            $table->dateTimeTz('update_note_perpus');
 
             // keuangan
             $table->boolean('status_keuangan');
-            $table->string('catatan_keuangan');
-            $table->dateTimeTz('tanggal_update_keuangan');
+            $table->string('note_keuangan');
+            $table->dateTimeTz('update_note_keuangan');
 
             // TA
             $table->boolean('status_TA');
@@ -32,11 +32,10 @@ return new class extends Migration
             $table->string('lembar_konsultasi_dospem_1', 100)->nullable();
             $table->string('lembar_konsultasi_dospem_2', 100)->nullable();
             $table->string('lembar_revisi', 100)->nullable();
-            $table->string('catatan_ta');
-            $table->dateTimeTz('tanggal_update_TA');
+            $table->string('note_ta');
+            $table->dateTimeTz('update_note_TA');
 
             $table->unsignedInteger('fk_mahasiswa');
-            // $table->foreign('fk_mahasiswa')->references('id_mahasiswa')->on('mahasiswa')->onDelete('cascade');
             $table->timestamps();
         });
     }

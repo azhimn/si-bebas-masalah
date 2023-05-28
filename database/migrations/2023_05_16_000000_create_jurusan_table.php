@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('jurusan', function (Blueprint $table) {
             $table->increments('id_jurusan');
             $table->char('nama', 50);
-            $table->char('kode', 1);
+            $table->string('kode_jurusan');
+            $table->year('tahun_berdiri');
             $table->unsignedInteger('fk_kajur')->nullable();
-            // $table->foreign('fk_kajur')->references('id_pegawai')->on('pegawai')->onDelete('cascade');
             $table->timestamps();
         });
     }

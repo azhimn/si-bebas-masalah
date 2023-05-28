@@ -13,6 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::table('users', function (Blueprint $table) {
+            // $table->foreign('username')->references('nik');
+            $table->foreign('fk_mahasiswa')->references('id_mahasiswa')->on('mahasiswa')->onDelete('cascade');
+            $table->foreign('fk_pegawai')->references('id_pegawai')->on('pegawai')->onDelete('cascade');
+        });
+
         Schema::table('jurusan', function (Blueprint $table) {
             $table->foreign('fk_kajur')->references('id_pegawai')->on('pegawai')->onDelete('cascade');
         });
@@ -24,10 +30,12 @@ return new class extends Migration
 
         Schema::table('pegawai', function (Blueprint $table) {
             $table->foreign('fk_prodi')->references('id_prodi')->on('program_studi')->onDelete('cascade')->nullable();
+            $table->foreign('fk_user')->references('id_user')->on('users')->onDelete('cascade')->nullable();
         });
 
         Schema::table('mahasiswa', function (Blueprint $table) {
             $table->foreign('fk_prodi')->references('id_prodi')->on('program_studi')->onDelete('cascade');
+            $table->foreign('fk_user')->references('id_user')->on('users')->onDelete('cascade')->nullable();
         });
 
         Schema::table('bebas_masalah', function (Blueprint $table) {

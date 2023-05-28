@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('program_studi', function (Blueprint $table) {
             $table->increments('id_prodi');
             $table->char('nama', 50);
-            $table->char('kode', 1);
-            $table->enum('jenjang', ['D2', 'D3', 'D4']);
+            $table->char('jenjang', 2);
+            $table->char('akreditasi', 1);
+            $table->char('kode_prodi', 1);
+            $table->year('tahun_beridi');
             $table->unsignedInteger('fk_jurusan');
             $table->unsignedInteger('fk_kaprodi');
-            // $table->foreign('fk_jurusan')->references('id_jurusan')->on('jurusan')->onDelete('cascade');
-            // $table->foreign('fk_kaprodi')->references('id_pegawai')->on('pegawai')->onDelete('cascade');
             $table->timestamps();
         });
     }
